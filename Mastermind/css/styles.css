@@ -1,0 +1,415 @@
+@charset "UTF-8";
+
+/*
+ * Author: Ondřej Machač
+ */
+
+/* --- Content list ---
+1 General
+2 Game
+    2.1 Pins and circles
+    2.2 Buttons
+3 Settings
+    3.1 Range sliders
+    3.2 Switches
+4 Data colors
+*/
+
+
+/********************
+1. General
+********************************************/
+* {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+body {
+    margin: 0;
+    background-color: #d6daea;
+    font-family: "Open Sans";
+}
+
+body, html {
+    height: 100%;
+    min-height: 100vh;
+}
+
+button:focus {
+    outline: 0;
+}
+
+/********************
+2 Game
+********************************************/
+#mastermind {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #292929;
+    color: white;
+    padding: 10px;
+}
+
+#mastermind h1 {
+    font-size: 1.4em
+}
+
+#mastermind h1 {
+    margin: 0;
+    text-transform: uppercase;
+}
+
+#color-box {
+    display: flex;
+    border-top: #585656 2px solid;
+    justify-content: space-around;
+    flex-direction: row;
+    padding-top: 8px;
+    margin-top: 6px;
+}
+
+/*****
+2.1 Pins and circles
+**********************/
+.pin, .circle {
+    background-color: #505050;
+    border-radius: 50%;
+    margin: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.attempt {
+    width: 30px;
+    height: 30px;
+    background-color: #363636 !important;
+    color: #d3d3d3;
+}
+
+[data-color].big.pin {
+    background-image: url("../images/big_pin.png");
+    background-size: 35px;
+}
+
+[data-color].small.pin {
+    background-image: url("../images/small_pin.png");
+    background-size: 18px;
+}
+
+.small {
+    width: 18px;
+    height: 18px;
+}
+
+.big {
+    width: 35px;
+    height: 35px;
+}
+
+.draggable {
+    position: absolute;
+    margin: 0;
+}
+
+/*****
+2.2 Buttons
+**********************/
+#done {
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#done:hover {
+    background-color: #2bb673;
+}
+
+#done > div {
+    width: 100%;
+    height: 100%;
+    margin-top: 2px;
+    background-color: #292929;
+    -webkit-mask: url(../images/done.svg) no-repeat center center;
+    -webkit-mask-size: 20px;
+    mask: url(../images/done.svg) no-repeat 50% 50%;
+    mask-size: 20px;
+}
+
+
+#game-settings > i {
+    color: #292929;
+    font-size: 30px;
+}
+
+#game-settings {
+    transition: background-color .2s;
+}
+
+#game-settings:hover {
+    background-color: #666666;
+}
+
+
+#game-action > i{
+    color: #292929;
+    transition: color 0.2s; 
+}
+
+#game-action {
+    transition: background-color 0.2s; 
+}
+
+#game-action .fi-flag {
+    font-size: 27px;
+}
+
+#game-action .fi-refresh {
+    font-size: 27px;
+}
+
+#game-action:hover:not(.disabled){
+    background-color: #ec8b0b;
+}
+
+#game-action > div {
+    width: 100%;
+    height: 100%;
+    background-color: #292929;
+    mask: url(../images/flag.svg) no-repeat center center;
+    -webkit-mask: url(../images/flag.svg) no-repeat center center;
+    mask-size: 25px;
+    -webkit-mask-size: 25px;
+    transition: transform .2s;
+}
+
+
+#start, #back {
+    width: 47%;
+    height: 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+    background-color: #b13434;
+    color: #e1e1e1;
+    border: none;
+    margin: 8px 1px;
+}
+
+#start:hover, #back:hover {
+    background-color: #d03838;
+    color: white;
+    cursor: pointer;
+}
+
+/********************
+3 Settings
+********************************************/
+#settings {
+    background-color: rgba(172, 172, 172, 0.7);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.settings-wrapper{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.settings-wrapper > table {
+    background-color: #171717;
+    color: #e1e1e1;
+    width: 400px;
+    text-transform: uppercase;
+    border-spacing: 0;
+}
+
+.settings-wrapper > table h2 {
+    background-color: #333333;
+    color: white;
+    font-weight: 800;
+    font-size: 1em;
+    text-align: left;
+    margin: 0;
+    padding: .5em 1em;
+}
+
+.settings-wrapper > table th {
+    padding: 0;
+}
+
+.settings-wrapper > table td {
+    padding: .5em 1em;
+    font-size: 0.95em;
+}
+
+/*****
+3.1 Range sliders
+**********************/
+#settings .range-value {
+    position: fixed;
+    text-align: center;
+    margin: 0.2em;
+    width: 20px;
+}
+
+#settings input[type="range"] {
+    -webkit-appearance: none;
+    width: 160px;
+    background: linear-gradient(to right, #2f2f2f 100%, transparent 0);
+    background-size: 150px 10px;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    outline: none;
+    margin: 0;
+}
+
+#settings input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    background: #3b3b3b;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3);
+}
+
+#settings input[type=range]::-moz-range-track {
+    background: transparent;
+}
+
+#settings input[type=range]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: #3b3b3b;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3);
+    border-radius: 0%;
+    border: none;
+}
+
+/*****
+3.2 Switches
+**********************/
+.onoffswitch {
+    position: relative;
+    width: 90px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    margin: 0 auto;
+}
+
+.onoffswitch-checkbox {
+    display: none;
+}
+
+.onoffswitch-label {
+    display: block;
+    overflow: hidden;
+    cursor: pointer;
+    border-radius: 0px;
+}
+
+.onoffswitch-inner {
+    display: block;
+    width: 200%;
+    margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+}
+
+.onoffswitch-inner:before, .onoffswitch-inner:after {
+    display: block;
+    float: left;
+    width: 50%;
+    height: 20px;
+    padding: 0;
+    line-height: 20px;
+    font-size: 14px;
+    color: white;
+    font-family: Trebuchet, Arial, sans-serif;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+
+.onoffswitch-inner:before {
+    content: "YES";
+    padding-left: 14px;
+    background-color: #2F2F2F;
+    color: #FFFFFF;
+}
+
+.onoffswitch-inner:after {
+    content: "NO";
+    padding-right: 21px;
+    background-color: #2F2F2F;
+    color: #FFFFFF;
+    text-align: right;
+}
+
+.onoffswitch-switch {
+    display: block;
+    width: 30px;
+    margin: 0px;
+    background: #3B3B3B;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 59px;
+    border-radius: 0px;
+    transition: all 0.3s ease-in 0s;
+}
+
+.onoffswitch-checkbox:checked+.onoffswitch-label .onoffswitch-inner {
+    margin-left: 0;
+}
+
+.onoffswitch-checkbox:checked+.onoffswitch-label .onoffswitch-switch {
+    right: 0px;
+}
+
+/********************
+4 Data colors
+********************************************/
+[data-color="1"] {
+    -webkit-filter: invert(40%) grayscale(100%) brightness(40%) sepia(100%) hue-rotate(-50deg) saturate(600%) contrast(0.8);
+    filter: grayscale(100%) brightness(40%) sepia(100%) hue-rotate(-50deg) saturate(600%) contrast(0.8);
+}
+
+[data-color="2"] {
+    -webkit-filter: invert(40%) grayscale(100%) brightness(40%) sepia(100%) hue-rotate(-80deg) saturate(500%) contrast(0.8);
+    filter: grayscale(100%) brightness(40%) sepia(100%) hue-rotate(-80deg) saturate(500%) contrast(0.8);
+}
+
+[data-color="3"] {
+    -webkit-filter: grayscale(100%) brightness(30%) sepia(100%) hue-rotate(-180deg) saturate(700%) contrast(0.8);
+    filter: grayscale(100%) brightness(30%) sepia(100%) hue-rotate(-180deg) saturate(700%) contrast(0.8);
+}
+
+[data-color="4"] {
+    -webkit-filter: grayscale(100%) brightness(40%) sepia(100%) hue-rotate(50deg) saturate(1000%) contrast(0.8);
+    filter: grayscale(100%) brightness(40%) sepia(100%) hue-rotate(50deg) saturate(1000%) contrast(0.8);
+}
+
+[data-color="5"] {
+    -webkit-filter: grayscale(100%) brightness(80%) sepia(70%) hue-rotate(5deg) saturate(500%) contrast(0.6);
+    filter: grayscale(100%) brightness(80%) sepia(70%) hue-rotate(5deg) saturate(500%) contrast(0.6);
+}
+
+[data-color="6"] {
+    -webkit-filter: grayscale(100%) brightness(70%) contrast(0.9);
+    filter: grayscale(100%) brightness(70%) contrast(0.9);
+}
+
+[data-color="7"] {
+    -webkit-filter: grayscale(100%) brightness(110%) contrast(1);
+    filter: grayscale(100%) brightness(110%) contrast(1);
+}
+
+[data-color="8"] {
+    -webkit-filter: invert(40%) grayscale(100%) brightness(70%) contrast(4);
+    filter: invert(40%) grayscale(100%) brightness(70%) contrast(4);
+}

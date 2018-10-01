@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Mastermind</title>
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <link rel="stylesheet" type="text/css"href="foundation-icons/icons.css" />
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
+    <link rel="manifest" href="../favicon/site.webmanifest">
+    <link rel="mask-icon" href="../favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+</head>
+
+<body>
+    <table id="mastermind">
+        <thead>
+            <tr>
+                <th colspan="6">
+                    <h1 id="newGame">Mastermind</h1>
+                </th>
+                <td>
+                    <div class="big circle" id="game-action">
+                        <i class="game-button step fi-flag"></i>
+                    </div>
+                </td>
+            </tr>
+        </thead>
+
+        <tbody>
+        </tbody>
+
+        <tfoot>
+            <tr>
+                <td colspan="100%">
+                    <div id="color-box">
+                        <div class="big circle" id="game-settings">
+                            <i class="step fi-wrench"></i>
+                        </div>
+                        <div data-color="1" class="big pin sample"></div>
+                        <div data-color="2" class="big pin sample"></div>
+                        <div data-color="3" class="big pin sample"></div>
+                        <div data-color="4" class="big pin sample"></div>
+                        <div data-color="5" class="big pin sample"></div>
+                        <div data-color="6" class="big pin sample"></div>
+                        <div data-color="7" class="big pin sample"></div>
+                        <div data-color="8" class="big pin sample"></div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th colspan="100%">
+                </th>
+            </tr>
+        </tfoot>
+    </table>
+    <div id="settings" style="display:none">
+        <div class="settings-wrapper">
+            <table>
+                <tr>
+                    <th colspan="2">
+                        <h2>Settings</h2>
+                    </th>
+                </tr>
+                <tr>
+                    <td>Attempt count</td>
+                    <td><input type="range" value="10" min="5" max="20" id="rows_slider"><span id="rows" class="range-value">10</span></td>
+                </tr>
+                <tr>
+                    <td>Columns count</td>
+                    <td><input type="range" value="5" min="3" max="8" id="columns_slider"><span id="columns" class="range-value">5</span></td>
+                </tr>
+                <tr>
+                    <td>Repeat colors</td>
+                    <td>
+                        <div class="onoffswitch">
+                            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="repeat">
+                            <label class="onoffswitch-label" for="repeat">
+                                    <span class="onoffswitch-inner"></span>
+                                    <span class="onoffswitch-switch"></span>
+                            </label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Allow empty</td>
+                    <td>
+                        <div class="onoffswitch">
+                            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="empty">
+                            <label class="onoffswitch-label" for="empty">
+                                    <span class="onoffswitch-inner"></span>
+                                    <span class="onoffswitch-switch"></span>
+                            </label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th colspan="2">
+                        <button id="back">Back</button>
+                        <button id="start">New game</button>
+                    </th>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <script src="game/client.js"></script>
+</body>
+</html>
